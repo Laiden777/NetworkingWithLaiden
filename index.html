@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NetLearn - Virtual Networking Classroom</title>
+    <style>
+        :root {
+            --primary: #3498db;
+            --secondary: #2980b9;
+            --accent: #f39c12;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --success: #27ae60;
+            --danger: #e74c3c;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark);
+        }
+        
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-icon {
+            margin-right: 0.5rem;
+        }
+        
+        .nav-links {
+            display: flex;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 1.5rem;
+            padding: 0.5rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            background-color: var(--secondary);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background-color: var(--accent);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #e67e22;
+        }
+        
+        .module-card, .quiz-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <span class="logo-icon">🌐</span>
+                NetLearn
+            </div>
+            <div class="nav-links">
+                <a href="#learn" class="nav-link" data-tab="learn">Learn</a>
+                <a href="#quiz" class="nav-link" data-tab="quiz">Tests & Quizzes</a>
+                <a href="#notes" class="nav-link" data-tab="notes">My Notes</a>
+                <a href="#chat" class="nav-link" data-tab="chat">AI Assistant</a>
+            </div>
+        </nav>
+    </header>
+    
+    <div class="container">
+        <div id="learn" class="tab-content active">
+            <h2>Learning Modules</h2>
+            <div class="module-card">
+                <h3>Network Fundamentals</h3>
+                <p>Learn the core concepts of computer networking including OSI model, TCP/IP, and basic network topologies.</p>
+                <a href="#" class="btn">Start Learning</a>
+            </div>
+            <div class="module-card">
+                <h3>Routing & Switching</h3>
+                <p>Understand how data is routed across networks and how switches manage local network traffic.</p>
+                <a href="#" class="btn">Start Learning</a>
+            </div>
+        </div>
+        
+        <div id="quiz" class="tab-content">
+            <h2>Tests & Quizzes</h2>
+            <div class="quiz-card">
+                <h3>Network Fundamentals Quiz</h3>
+                <p>Test your understanding of basic networking concepts, protocols, and the OSI model.</p>
+                <a href="#" class="btn">Start Quiz</a>
+            </div>
+            <div class="quiz-card">
+                <h3>IP Addressing & Subnetting</h3>
+                <p>Challenge yourself with questions on IP addressing, subnetting, and CIDR notation.</p>
+                <a href="#" class="btn">Start Quiz</a>
+            </div>
+        </div>
+        
+        <div id="notes" class="tab-content">
+            <h2>My Notes</h2>
+            <div style="background-color: white; padding: 1.5rem; border-radius: 8px;">
+                <p>Your notes will appear here. This is a placeholder for the notes functionality.</p>
+            </div>
+        </div>
+        
+        <div id="chat" class="tab-content">
+            <h2>AI Networking Assistant</h2>
+            <div style="background-color: white; padding: 1.5rem; border-radius: 8px;">
+                <p>This is where you would chat with the AI assistant. Placeholder for chat interface.</p>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div>
+            <p>&copy; 2023 NetLearn Virtual Classroom. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            function showTab(tabId) {
+                document.querySelectorAll('.tab-content').forEach(content => {
+                    content.classList.remove('active');
+                });
+                
+                const activeTab = document.getElementById(tabId);
+                if (activeTab) {
+                    activeTab.classList.add('active');
+                }
+            }
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const tabId = this.getAttribute('data-tab');
+                    showTab(tabId);
+                    window.location.hash = tabId;
+                });
+            });
+            
+            function checkInitialTab() {
+                const hash = window.location.hash.substring(1);
+                if (hash && document.getElementById(hash)) {
+                    showTab(hash);
+                } else {
+                    showTab('learn');
+                }
+            }
+            
+            checkInitialTab();
+            
+            window.addEventListener('hashchange', function() {
+                const hash = window.location.hash.substring(1);
+                if (hash && document.getElementById(hash)) {
+                    showTab(hash);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
